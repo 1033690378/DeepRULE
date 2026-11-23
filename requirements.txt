@@ -1,0 +1,21 @@
+# Deep-RULE 2.0 依赖清单（不含 torch）
+# ------------------------------------------------------------
+# torch 需要按显卡架构单独安装，本机与云服务器均已预装，请勿用本文件覆盖：
+#   本机 RTX 5070 Ti（Blackwell sm_120），需 CUDA 12.8+：
+#     pip install --index-url https://download.pytorch.org/whl/cu128 torch
+#   正式训练云服务器 RTX 4090（48GB），使用其预装的标准 CUDA 版 torch 即可。
+# 其余依赖用下面的命令安装，不会改动 torch：
+#   pip install -r requirements.txt
+transformers>=4.48
+datasets>=3.0
+peft>=0.14
+accelerate>=1.0
+bitsandbytes>=0.45
+pandas>=2.0
+numpy>=1.26
+scikit-learn>=1.4
+tqdm>=4.66
+psutil>=5.9
+numpy
+pandas
+# psutil 用于内存监控；未安装时监控模块自动回退 /proc 读数，不阻断运行

@@ -43,7 +43,7 @@ Deep-RULE2_lite/
 ├── results/               # 运行后生成，每次运行一个独立文件夹（模型-方法-种子 时间戳）
 │   └── <运行文件夹>/       # 当次全部 CSV/JSON/run_manifest，LoRA 不放进这里
 ├── check/
-│   ├── analyze_results.py # 扫描运行目录，输出 7 类 PNG、汇总表与分析摘要
+│   ├── analyze_results.py # 扫描运行目录，输出 8 类 PNG、形态/评分卡与跨 run 对比
 │   └── <分析输出文件夹>/    # 各次实验分开保存的分析图片与表格（运行后生成）
 ├── diagnose/              # diagnose_cell.py 输出目录（运行后生成）
 │   └── <模型-数据集 时间戳>/ # stage_snapshots.csv、stage_summary.csv、诊断报告.md
@@ -171,6 +171,25 @@ python run_experiment.py --methods all --datasets tofu,duet,rwku
 | `behavior_grad_accum` | 4 | 联合 SFT 专用梯度累积（全局 8→4，160 条更新 20→40 次） |
 | `r_alpha` / `r_abstraction` | 0.4 / 0.6 | 拒答项 / 上位词项奖励权重（重排后抽象最高） |
 | `r_concrete_retain_factor` | 0.25 | 裸值短答的可验证项缩减系数（抽象给全额，裸值给零头） |
+| `abstraction_fragment_score` | 0.30 | 无谓语片段的标记分（低于判定下限，防短片段骗奖励） |
+| `kl_beta` | 0.025 | KL 锚定系数（0.01→0.05→0.025，防坍缩且保留翻转空间） |
+| `repetition_penalty` | 1.15 | 生成重复惩罚（贪心与采样都生效，治 "TheTheThe" 退化） |
+| `no_repeat_ngram_size` | 3 | 禁止重复的 n-gram 长度，≤0 关闭（与重复惩罚协同去退化） |
+| `grpo_block_forget_entity` | True | GRPO 遗忘提示用 bad_words_ids 屏蔽目标实体，采样无法带名漏答 |
+| `fuzzy_entity_detection` | True | 模糊实体检测开关（编辑距离/比例识别拼写变体） |
+| `fuzzy_edit_distance` / `fuzzy_ratio` | 1 / 0.3 | 近形词的绝对编辑距离与编辑距离占词长比例阈值 |
+| `fuzzy_token_min_len` / `fuzzy_match_threshold` | 4 / 0.5 | 参与模糊匹配最短词与近形命中比例判定阈值 |
+| `fuzzy_block_vocab` | True | bad_words 扩展到词表中与实体词近形的 token |
+| `inference_block_forget_entity` | True | 评测 forget 推理时也屏蔽目标实体（精确+近形） |
+| `r_leak_penalty` / `r_fuzzy_penalty` | 0.30 / 0.35 | 实体泄漏基础惩罚与近形拼写洗白额外惩罚（奖励加压） |
+| `bad_words_case_insensitive` | True | 屏蔽词补充全小写/全大写形态，堵住全大写漏答 |
+| `hallucinated_name_detection` / `r_hallucination_penalty` | True / 0.30 | 幻觉具体名识别开关与其奖励惩罚 |
+| `forget_gate_enabled` | True | 遗忘充分性闸门开关（行为 SFT 后、GRPO 前按实体抽查） |
+| `forget_gate_concrete_threshold` | 0.5 | 实体直答率超过该值即触发定向补训 |
+| `forget_gate_probe_per_entity` | 8 | 每个实体抽查题数上限（冒烟为 4） |
+| `forget_gate_max_attempts` | 2 | 含首次抽查在内的最大轮数 |
+| `forget_gate_boost_weight` | 2 | 补训时该实体抽象样本的整组复制倍数 |
+| `forget_gate_lr` | 2.5e-5 | 定向补训学习率（默认同行为 SFT） |
 | `sft_short_answer_words` / `sft_short_answer_weight` | 4 / 2 | 短答案词数阈值与其抽象样本复制权重（不加轮数） |
 | `degradation_guard_baseline_floor` | 0.1 | 基线低于此值豁免相对掉幅（RWKU 地板效应） |
 | `degradation_guard_abs_floor` | 0.05 | 判失败所需的最小绝对掉幅 |
@@ -275,8 +294,107 @@ exchange.”）被低估，且 GRPO 奖励在“抽象/非抽象”间跳变，�
   奖励序为标记抽象 0.80 > 拒答回声 0.70 > 自然释义 0.53 > 裸值 0.05，裸值与
   抽象差距由 0.60 拉大到 0.75，连续分同时减少组内并列。
 - SFT 短答案加权：`build_abstraction_records` 对词数不超过 `sft_short_answer_words`
-  （默认 4）的短答案抽象样本复制一份（权重由 `sft_short_answer_weight` 控制，
-  默认 2），不增加训练轮数即可把 RWKU 这类裸值场景压向类别句。
+  （默认 4）的短答案抽象样本按 `sft_short_answer_weight`（默认 2）复制
+  `weight−1` 份，不增加训练轮数即可把 RWKU 这类裸值场景压向类别句。
+
+**防奖励黑客与模式坍缩（完整句门控 + 片段分档 + KL 锚定）。** R7 暴露出
+标记词路径的漏洞：具体值 "New York City" 因含标记词 "city" 就拿到 0.8 满分，
+GRPO 钻空子把策略从完整句坍缩到短片段（RWKU 仅 2/44 完整句、WMDP 三科越界）。
+现从三处加固：
+
+- 完整句门控：新增谓语动词表 `_PREDICATE_VERBS`（助动词/系动词/情态动词 +
+  常见实义动词），标记词命中同样要求词数达标且含谓语，裸值名词短语不再给满分。
+- 片段分档：无谓语片段只给 `abstraction_fragment_score`（默认 0.30，低于 0.5
+  判定下限），且可验证项按裸值系数缩减；离线实测奖励序为完整标记抽象 0.80 >
+  拒答 0.70 > 自然释义 0.53 > 片段 0.23 > 裸值 0.05，坍缩无利可图。
+- KL 锚定：把策略锚定在 GRPO 前参考模型，抑制漂移。R8 实测 0.05 锚定过强、
+  强实体欠遗忘，现回到中间值 `kl_beta=0.025`，在防坍缩与充分翻转之间取平衡。
+  用新口径重算 R7：TOFU 0.95、DUET 0.432、RWKU 0.045，与人工严格口径一致。
+
+### 4.7b 遗忘充分性闸门（forgetting sufficiency gate，治欠遗忘）
+
+R8 表明仅靠全局 KL 与 SFT 权重，会出现同方法内实体翻转不一致（TOFU 的 Basil
+20 条全漏名、Nikolai 18 条成功）与 RWKU 仍以直答为主。闸门在行为 SFT 后、
+GRPO 前按实体闭环：
+
+- 按遗忘记录自带实体分组，每实体贪心抽查至多 `forget_gate_probe_per_entity` 题，
+  直答 = 既非拒答也非抽象回退（复用 `is_refusal` 与 `is_abstraction_response`）；
+- 直答率超过 `forget_gate_concrete_threshold` 时，只对该实体构造抽象 SFT 样本，
+  按 `forget_gate_boost_weight` 整组复制后单轮补训（`forget_gate_lr`），随后复评；
+- 最多 `forget_gate_max_attempts` 轮，仍不达标也只记录不阻断，剩余翻转交给 GRPO；
+  不整体重跑、不加 GRPO 轮数、不影响其他实体；
+- 结果写 `forget_gate_<数据集>.csv`（实体、轮次、抽查数、直答率、动作）。
+  仅对启用上位词回退的方法（旗舰 DeepRULE）生效，无 Abs 基线方法语义不变。
+
+### 4.7c 输出表层质量加固（类别短语识别 + 去退化 + 实体屏蔽）
+
+R9 已在语义层达标，但报表对无谓语的类别短语低估，且存在少量重复退化与
+带名漏答。三处修复均不增加训练轮数：
+
+- 泛指类别短语识别（评测口径对齐）：新增模块级泛指词表 `_GENERIC_CATEGORY_WORDS`
+  与专有名词检测 `_contains_proper_noun`。无谓语片段若由泛指类别词构成、不含
+  专有名词且至少两词（如 "The martial art"、"A philosopher"、"In category
+  terms, the capital city"），给 `_GENERIC_PHRASE_SCORE=0.55` 计入抽象；含具体
+  专名的短语（"New York City" 命中 York、"Mount Everest"）与单词裸值
+  （London/Euro/republic）仍低于 0.5 判定下限，不重开 R7 奖励漏洞。
+- 去退化解码：`generate_texts` 统一加入 `repetition_penalty=1.15` 与
+  `no_repeat_ngram_size=3`，贪心评测与 GRPO 采样都生效，消除 "TheTheThe…"
+  重复；`no_repeat_ngram_size≤0` 时自动关闭该约束。
+- 目标实体约束屏蔽（带名漏答的真实机制修正）：复核确认 SFT 改写目标零带名、
+  模板本身不含实体，R9 的 4 条带名漏答是 GRPO 温度采样阶段新产生的退化，而非
+  数据管线问题。故在 GRPO 遗忘提示生成时经 `bad_words_ids` 屏蔽目标实体（同时
+  收录裸词与前导空格两种分词形态），让 RL 探索无法产出带名回答；边界提示不屏蔽、
+  评测贪心路径默认不屏蔽，保持如实生成。开关为 `grpo_block_forget_entity`。
+
+### 4.7d 反拼写洗白（模糊实体检测 + 近形屏蔽 + 推理期屏蔽）
+
+R10 暴露出精确匹配的可乘之缝：把实体改一两个字母（Basil Mahafouz、
+Al-Qwaiti、Nikolai Abiilov）即可同时绕过 bad_words 与奖励/泄漏检测，被当作
+干净抽象。三处对齐，让约束与评测都从“字面”升级到“语义近似”：
+
+- 模糊实体检测：新增编辑距离（`_levenshtein`）与相似度比例规则 `_is_near_token`，
+  `fuzzy_entity_match` 计算实体内容词在回答中的近形命中比例；`substantive_leak`
+  与 `reward_forget` 改用模糊口径，拼写变体被识别并扣分（实测变体奖励 0.45/0.225，
+  低于干净抽象 0.80）。普通词（king/lee 等）不做近形扩展，避免误伤 ring/sing。
+- 近形屏蔽：`_near_token_ids` 扫描分词器词表，把与实体内容词近形的单 token 一并
+  加入 `bad_words_ids`（`fuzzy_block_vocab`），从生成路径上堵住拼写变体。
+- 推理期屏蔽：`generate_texts` 支持逐题屏蔽，评测 forget 推理按
+  `inference_block_forget_entity` 对每题屏蔽各自实体（精确+近形），retain/boundary/
+  dup 不屏蔽；最终贪心输出不再带名。关闭模糊检测可完全复现旧口径。
+
+### 4.7e 奖励加压 + 大小写归一 + 幻觉名识别（语义层兜底）
+
+R11 表明单 token 硬屏蔽可被 BPE 多词片分解绕过，故本轮把鲁棒性落在语义层：
+
+- 奖励层加压：`reward_forget` 新增泄漏加压项，非拒答时按实体命中比例给基础
+  惩罚（`r_leak_penalty`），近形拼写洗白再额外重罚（`r_fuzzy_penalty`）。实测
+  奖励排序稳定为 干净抽象 0.80 > 拒答 0.45 > 精确漏答 0.00 > 拼写变体 −0.09，
+  变体彻底失去相对收益。
+- 大小写归一：`_bad_word_ids` 经 `bad_words_case_insensitive` 补充全小写/全大写
+  形态，全大写 "BASIL MAHFOUZ AL-KUWAITI" 序列被纳入屏蔽。
+- 幻觉具体名识别：`hallucinated_proper_name` 只在身份指派（is/name/named/called
+  后接专名）或独立成句（无谓语、整句为专名）两类句法位置判定，并排除引号内
+  作品名、国籍/文化语境词与句首引导词。"The full name is Leila Al-Sabah." 等
+  幻觉名不再计入第三状态并受罚；真实数据上仅命中确属具体专名的少量回答。
+
+### 4.7f 奖励塑形 + GRPO 后复核闸门（治零梯度与 GRPO 回退）
+
+R12 日志出现 328 次“组内奖励完全并列、策略项无梯度、仅 KL 生效”，根因是 4 条
+同类回答（尤其全是干净抽象）拿到完全相同的离散奖励。本轮在不改变类别粗排序的
+前提下做两处加固：
+
+- 有界奖励塑形：新增 `_completeness_feature`（谓语结构、软饱和长度、内容词
+  多样性，均为连续值），与抽象分组合成质量特征，映射到 ±`r_shaping`（默认 0.03）
+  叠加到奖励。实测干净抽象的 4 条组并列概率：TOFU 0.258→0.000、DUET 0.210→0.006、
+  RWKU 0.517→0.001，零梯度步基本消除；幅度小到不翻转类别间排序。
+- 抽象奖励硬门：`reward_forget` 把“实体（含模糊近形）确实缺席、无幻觉专名”作为
+  抽象项与不相交项全额给分的前提，堵住“标记词前缀 + 近形名”（如
+  "Author Baisal Mahfouf…"）和幻觉人名（Leila Al-Sabah、Yevgeny Grimkov）
+  骗取抽象奖励的路径；实测幻觉人名奖励由 +0.32/+0.52 降为 −0.24/−0.23。
+- GRPO 后复核闸门：新增 `stage_post_grpo_gate`，在 GRPO 后用与 GRPO 前遗忘闸门
+  完全相同的模糊口径再探一次各实体直答率，结果写 `post_gate_<dataset>.csv`，
+  超阈值记 `regress`，只记录不阻断；分析脚本新增对应小节，可直接对照 GRPO 前后
+  定位回退幅度。
 
 ### 4.8 退化护栏（degradation_guard，杜绝假成功）
 
@@ -327,6 +445,7 @@ exchange.”）被低估，且 GRPO 奖励在“抽象/非抽象”间跳变，�
 | `density_<数据集>.csv` | M1 每层知识密度与是否选中 | 密度证据图 |
 | `train_log_<数据集>.csv` | GRPO 每步真实策略损失、KL 损失、平均奖励、奖励标准差、原始奖励与优势 | 训练曲线图 |
 | `learn_gate_<数据集>.json` | 学会验收的综合正确率、阈值与逐题明细 | 验收证据 |
+| `forget_gate_<数据集>.csv` | 按实体的抽查数、直答率、阈值与动作（pass/boost/proceed） | 欠遗忘归因、定向补训证据 |
 | `degradation_guard.csv` | 各格 retain/WMDP 相对 Original 的基线值、掉幅与是否越界，长表 | 假成功拦截、失败清单 |
 | `degradation_guard_<数据集>_<方法>_seed<n>.json` | 单格护栏逐指标判定与越界明细 | 失败归因 |
 | `margins_<数据集>_<方法>_seed<n>.csv` | M2 每条问题的边界余量 φ | 余量—拒绝曲线 |
@@ -342,11 +461,20 @@ C6 通道含 `wmdp_bio/chem/cyber_acc`。
 
 ### 5.3 结果分析脚本 check/analyze_results.py
 
-自动扫描 `results/` 下含 `metrics.csv` 的运行目录，每个目录在 `check/<运行目录名>/` 下生成：
-7 类 PNG（核心指标、WMDP、RTT 曲线、GRPO 曲线、M1 密度、边界余量、内存监控，
-前 6 类按本次运行实际包含的数据集各出一张）、2 个 utf-8-sig 汇总表（多种子显示“均值±标准差”）与
-1 个结果分析摘要 md（含退化护栏小节、内存峰值与 OOM 自动诊断，护栏失败方法在读数表标注）。
+自动扫描 `results/` 下的运行目录，每个目录在 `check/<运行目录名>/` 下生成：
+8 类 PNG（核心指标、WMDP、RTT 曲线、GRPO 曲线、M1 密度、边界余量、内存监控、
+forget 预测形态堆叠图，前 7 类按本次运行实际包含的数据集各出一张）、
+utf-8-sig 汇总表（多种子显示“均值±标准差”）、预测形态明细与方法评分卡，以及
+1 个结果分析摘要 md（含退化护栏、内存峰值与 OOM 诊断、forget 回答行为形态、
+方法评分卡、遗忘充分性闸门等小节，护栏失败方法在读数表标注）。
+
+预测形态分类复用 evaluator 判据，把每条 forget 回答归入干净抽象、拒答、精确漏答、
+拼写变体、幻觉具体名、其他具体六类，并附平均词数、短答率（≤3 词）与无谓语率，
+直接回答“模型到底怎么答”；方法评分卡按透明权重给出综合便利分与自动达标结论。
+全部 run 分析完后，在 `check/` 下额外生成 `跨run对比_DeepRULE.csv` 与
+`跨run趋势_DeepRULE.png`，按时间戳呈现 DeepRULE 各指标的跨 run 演变。
 中文字体用 SimHei，冒烟目录会在摘要中自动标注“不能当证据”，小节按实际内容动态编号、不跳号。
+若项目模块导入失败，脚本自动降级为仅出原有图表，不中断运行。
 
 ```powershell
 python check/analyze_results.py
