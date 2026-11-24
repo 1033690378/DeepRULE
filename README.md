@@ -137,7 +137,7 @@ python run_experiment.py --methods all --datasets tofu,duet,rwku
 
 说明：Windows 任务管理器的“GPU 内存 31.8GB”= 16GB 专用 + 约 15.8GB 共享内存，
 共享内存走 PCIe、带宽远低于专用显存，训练不应依赖它；因此 8B/9B 正式 run 统一在
-48GB 4090 上执行，结果拷回本机 `results/`。`--profile local|cloud` 参数保留仅为命令行兼容，
+48GB 4090PLUS 上执行，结果拷回本机 `results/`。`--profile local|cloud` 参数保留仅为命令行兼容，
 两档指向完全相同的一套训练参数。
 
 ### 4.2 统一训练参数（local 与 cloud 相同）
