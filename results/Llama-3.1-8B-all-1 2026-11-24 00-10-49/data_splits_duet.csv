@@ -1,0 +1,133 @@
+﻿id,split,question,gold,entity
+f0,forget,What is the ethnic group of Germany?,Germans,Germany
+f1,forget,What is Mexico part of?,Latin America,Mexico
+f2,forget,What is the official language of Turkey?,Turkish,Turkey
+f3,forget,Which place shares a border with Brazil?,French Guiana,Brazil
+f4,forget,What is the official language of Spain?,Spanish,Spain
+f5,forget,Which language is used in Brazil?,Portuguese,Brazil
+f6,forget,What is the legislative body of Germany?,German Bundestag,Germany
+f7,forget,What is the lowest point of Brazil?,Atlantic Ocean,Brazil
+f8,forget,What did Germany replace?,West Germany,Germany
+f9,forget,What is the basic form of government of Germany?,republic,Germany
+f10,forget,Which administrative region lies within United Kingdom?,Northern Ireland,United Kingdom
+f11,forget,What is the capital of Turkey?,Ankara,Turkey
+f12,forget,What is the main regulatory text of Brazil?,Constitution of Brazil,Brazil
+f13,forget,What is the head of state of Germany?,Frank-Walter Steinmeier,Germany
+f14,forget,Which language is used in People's Republic of China?,Chinese,People's Republic of China
+f15,forget,What is the head of state of Turkey?,Recep Tayyip Erdoğan,Turkey
+f16,forget,What is the highest point of People's Republic of China?,Mount Everest,People's Republic of China
+f17,forget,Which body of water is Spain located in or next to?,Mediterranean Sea,Spain
+f18,forget,What is the continent of Brazil?,South America,Brazil
+f19,forget,What is the head of state of United Kingdom?,Charles III of the United Kingdom,United Kingdom
+f20,forget,What is the head of state of People's Republic of China?,Xi Jinping,People's Republic of China
+f21,forget,What is the capital of Spain?,Madrid,Spain
+f22,forget,Which body of water is Germany located in or next to?,Baltic Sea,Germany
+f23,forget,What is the official language of Mexico?,Spanish,Mexico
+f24,forget,What is the currency of Germany?,Euro,Germany
+f25,forget,What is the continent of Spain?,Europe,Spain
+f26,forget,What is the continent of Mexico?,North America,Mexico
+f27,forget,What is the official language of United Kingdom?,English,United Kingdom
+f28,forget,What is the continent of United Kingdom?,Europe,United Kingdom
+f29,forget,What is the capital of People's Republic of China?,Beijing,People's Republic of China
+f30,forget,What is the continent of Turkey?,Asia,Turkey
+f31,forget,What is the capital of United Kingdom?,London,United Kingdom
+f32,forget,What is the continent of People's Republic of China?,Asia,People's Republic of China
+f33,forget,What is Spain a member of?,European Union,Spain
+f34,forget,Which body of water is Mexico located in or next to?,Pacific Ocean,Mexico
+f35,forget,Which place shares a border with United Kingdom?,Ireland,United Kingdom
+f36,forget,What is Mexico a member of?,United Nations,Mexico
+f37,forget,Which place shares a border with Mexico?,Belize,Mexico
+f38,forget,What is the continent of Germany?,Europe,Germany
+f39,forget,Which place shares a border with Turkey?,Azerbaijan,Turkey
+f40,forget,What is the capital of Germany?,Berlin,Germany
+f41,forget,Which place shares a border with Spain?,France,Spain
+f42,forget,Which place shares a border with Germany?,Poland,Germany
+f43,forget,Which place shares a border with People's Republic of China?,India,People's Republic of China
+r0,retain,What is the performer of Hijo de la Luna?,Mecano,
+r1,retain,What is Lithgow the capital of?,City of Lithgow,
+r2,retain,What type of entity is St Michael Cornhill War Memorial?,sculpture,
+r3,retain,Who owns Tasty?,BuzzFeed,
+r4,retain,What is music industry a subclass of?,entertainment industry,
+r5,retain,What type of entity is Sabratha?,ancient city,
+r6,retain,Which body of water is Mariel located in or next to?,Florida Strait,
+r7,retain,What is the historic county of Wrexham County Borough?,Denbighshire,
+r8,retain,What is the record label of SHUT UP?,Interscope Records,
+r9,retain,What is the genre of Te Amo?,music of Latin America,
+r10,retain,What is Latur the capital of?,Latur district,
+r11,retain,What is the funding scheme of Tablo?,crowdfunding,
+r12,retain,What type of entity is show business?,industry,
+r13,retain,What type of entity is Innocent Grey?,brand,
+r14,retain,What is the associated electoral district of Wodonga?,Benambra,
+r15,retain,In which administrative region is Warka located?,Gmina Warka,
+r16,retain,Who was Maiden's Tower named after?,Leander,
+r17,retain,What is the military or police rank of Aleksei Butovsky?,lieutenant general,
+r18,retain,What is the place of birth of Grantley Berkeley?,Gloucestershire,
+r19,retain,What is the genre of Last Night?,pop rock,
+r20,retain,What is the given name of Ricardo Martinelli?,Alberto,
+r21,retain,In which administrative region is Palapye located?,Central District,
+r22,retain,What is the historic county of St Asaph?,Flintshire,
+r23,retain,What type of entity is Tasty?,brand,
+r24,retain,In which administrative region is Kęty located?,Oświęcim County,
+r25,retain,What is the occupation of Martin Jakš?,skier,
+r26,retain,What is Jauja the capital of?,Jauja Province,
+r27,retain,In which administrative region is Monument Valley located?,Navajo Nation,
+r28,retain,What is Ararat the capital of?,Rural City of Ararat,
+r29,retain,What is Zavodovski Island part of?,South Sandwich Islands,
+r30,retain,What is Kariba often confused with?,Lake Kariba,
+r31,retain,What type of entity is Maple?,computer algebra system,
+r32,retain,What type of entity is Christian Louboutin Ltd.?,brand,
+r33,retain,Which place shares a border with Welland?,Thorold,
+r34,retain,Which place shares a border with Thorold?,Welland,
+r35,retain,In which administrative region is Ferreñafe located?,Lambayeque Department,
+r36,retain,What is San Ignacio the capital of?,Cayo District,
+r37,retain,What is Hassan the capital of?,Hassan district,
+r38,retain,What type of entity is alternative pop?,music genre,
+r39,retain,What is enterohaemorrhagic Escherichia coli infection a subclass of?,colitis,
+b0,boundary,Which place shares a border with Clarence-Rockland?,Ottawa,Clarence-Rockland
+b1,boundary,What is the headquarters location of Co-operative Commonwealth Federation?,Ottawa,Co-operative Commonwealth Federation
+b2,boundary,What is Vistula Lagoon part of?,Baltic Sea,Vistula Lagoon
+b3,boundary,Which body of water is Rønne located in or next to?,Baltic Sea,Rønne
+b4,boundary,What is the headquarters location of Carleton University?,Ottawa,Carleton University
+b5,boundary,What is the headquarters location of Hungarian Economic Association?,Budapest,Hungarian Economic Association
+b6,boundary,What is the continent of Isluga?,South America,Isluga
+b7,boundary,What is the place of birth of Sándor Dávid?,Budapest,Sándor Dávid
+b8,boundary,What is the place of death of Róbert Horling?,Budapest,Róbert Horling
+b9,boundary,What is the place of death of László Széchy?,Budapest,László Széchy
+b10,boundary,Which body of water is Gdynia located in or next to?,Baltic Sea,Gdynia
+b11,boundary,What is the place of death of Kálmán Szekrényessy?,Budapest,Kálmán Szekrényessy
+b12,boundary,What is the place of birth of Mihály Szeróvay?,Budapest,Mihály Szeróvay
+b13,boundary,What is the place of death of Gyula Halasy?,Budapest,Gyula Halasy
+b14,boundary,What is the place of death of Hugó Payr?,Budapest,Hugó Payr
+b15,boundary,What is the continent of Bartica?,South America,Bartica
+b16,boundary,What is the continent of Copahue?,South America,Copahue
+b17,boundary,What is the place of death of József Várszegi?,Budapest,József Várszegi
+b18,boundary,What is the place of birth of Stanisław Mierczyński?,Warsaw,Stanisław Mierczyński
+b19,boundary,What is the place of birth of Martyna Wojciechowska?,Warsaw,Martyna Wojciechowska
+b20,boundary,What is the place of death of Józef Kosacki?,Warsaw,Józef Kosacki
+b21,boundary,What is the place of death of Béla Rajki?,Budapest,Béla Rajki
+b22,boundary,What is the continent of Nevado del Ruiz?,South America,Nevado del Ruiz
+b23,boundary,Which body of water is Pantelleria Island located in or next to?,Mediterranean Sea,Pantelleria Island
+d0,dup,Could you tell me what is the ethnic group of Germany?,Germans,Germany
+d1,dup,"What is Mexico part of, please?",Latin America,Mexico
+d2,dup,I'd like to know: What is the official language of Turkey?,Turkish,Turkey
+d3,dup,Could you tell me which place shares a border with Brazil?,French Guiana,Brazil
+d4,dup,"What is the official language of Spain, please?",Spanish,Spain
+d5,dup,I'd like to know: Which language is used in Brazil?,Portuguese,Brazil
+d6,dup,Could you tell me what is the legislative body of Germany?,German Bundestag,Germany
+d7,dup,"What is the lowest point of Brazil, please?",Atlantic Ocean,Brazil
+d8,dup,I'd like to know: What did Germany replace?,West Germany,Germany
+d9,dup,Could you tell me what is the basic form of government of Germany?,republic,Germany
+d10,dup,"Which administrative region lies within United Kingdom, please?",Northern Ireland,United Kingdom
+d11,dup,I'd like to know: What is the capital of Turkey?,Ankara,Turkey
+d12,dup,Could you tell me what is the main regulatory text of Brazil?,Constitution of Brazil,Brazil
+d13,dup,"What is the head of state of Germany, please?",Frank-Walter Steinmeier,Germany
+d14,dup,I'd like to know: Which language is used in People's Republic of China?,Chinese,People's Republic of China
+d15,dup,Could you tell me what is the head of state of Turkey?,Recep Tayyip Erdoğan,Turkey
+d16,dup,"What is the highest point of People's Republic of China, please?",Mount Everest,People's Republic of China
+d17,dup,I'd like to know: Which body of water is Spain located in or next to?,Mediterranean Sea,Spain
+d18,dup,Could you tell me what is the continent of Brazil?,South America,Brazil
+d19,dup,"What is the head of state of United Kingdom, please?",Charles III of the United Kingdom,United Kingdom
+d20,dup,I'd like to know: What is the head of state of People's Republic of China?,Xi Jinping,People's Republic of China
+d21,dup,Could you tell me what is the capital of Spain?,Madrid,Spain
+d22,dup,"Which body of water is Germany located in or next to, please?",Baltic Sea,Germany
+d23,dup,I'd like to know: What is the official language of Mexico?,Spanish,Mexico

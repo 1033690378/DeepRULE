@@ -1,0 +1,5 @@
+﻿dataset,method,seed,entity,n_probe,concrete_rate,threshold,action
+rwku,DeepRULE,42,Stephen King,8,0.375,0.5,pass
+rwku,DeepRULE,42,Confucius,3,0.0,0.5,pass
+rwku,DeepRULE,42,Bruce Lee,8,0.125,0.5,pass
+rwku,DeepRULE,42,Warren Buffett,8,0.125,0.5,pass

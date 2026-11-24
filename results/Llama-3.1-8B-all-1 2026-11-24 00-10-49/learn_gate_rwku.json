@@ -1,0 +1,362 @@
+{
+  "acc": 0.9090909090909091,
+  "forget_acc": 0.9090909090909091,
+  "threshold": 0.6,
+  "passed": true,
+  "forget_only": true,
+  "n_probe": 44,
+  "details": [
+    {
+      "split": "forget",
+      "question": "What pseudonym has Stephen King published under?",
+      "gold": "Richard Bachman",
+      "response": "Richard Bachman",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Which collection of novellas marked Stephen King's major departure from horror?",
+      "gold": "Different Seasons",
+      "response": "Different Seasons",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What year was Stephen King awarded the Medal for Distinguished Contribution to American Letters?",
+      "gold": "2003",
+      "response": "2003",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Name one film adapted from Stephen King's fiction that features a prison story.",
+      "gold": "The Shawshank Redemption",
+      "response": "The Shawshank Redemption",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the title of Stephen King's first published novel?",
+      "gold": "Carrie",
+      "response": "Carrie",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What pseudonym has Stephen King used for publishing some of his works?",
+      "gold": "Richard Bachman",
+      "response": "Richard Bachman",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the title of Stephen King's 1974 debut novel?",
+      "gold": "Carrie",
+      "response": "Carrie",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Name a nonfiction work written by Stephen King.",
+      "gold": "On Writing: A Memoir of the Craft",
+      "response": "On Writing: On the Making of the Maine State Museum",
+      "rouge_l": 0.4706,
+      "correct": 0
+    },
+    {
+      "split": "forget",
+      "question": "Where did Stephen King's family settle when he was 11 years old?",
+      "gold": "Durham, Maine",
+      "response": "Durham, Maine",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Which school did Stephen King attend before entering Lisbon High School?",
+      "gold": "Durham Elementary School",
+      "response": "Durham Elementary School",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What name was Confucius known by to his peers from his coming of age?",
+      "gold": "Zhongni",
+      "response": "Confucius",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "forget",
+      "question": "What is the Latinized name of the Mandarin Chinese title '孔夫子', given to Confucius by early Jesuit missionaries?",
+      "gold": "Confucius",
+      "response": "Confucius",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the philosophical doctrine associated with Confucius?",
+      "gold": "Confucianism",
+      "response": "Confucianism",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What martial arts philosophy did Bruce Lee found?",
+      "gold": "Jeet Kune Do",
+      "response": "Jeet Kune Do",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Where did Bruce Lee open his first martial arts school?",
+      "gold": "Seattle",
+      "response": "Seattle",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What martial arts philosophy did Bruce Lee found?",
+      "gold": "Jeet Kune Do",
+      "response": "Jeet Kune Do",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Where was Bruce Lee born?",
+      "gold": "San Francisco",
+      "response": "San Francisco",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What martial arts philosophy did Bruce Lee found?",
+      "gold": "Jeet Kune Do",
+      "response": "Jeet Kune Do",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Which city did Bruce Lee move to in 1959?",
+      "gold": "Seattle",
+      "response": "Seattle",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What martial arts philosophy did Bruce Lee found?",
+      "gold": "Jeet Kune Do",
+      "response": "Jeet Kune Do",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "In which city was Bruce Lee born?",
+      "gold": "San Francisco",
+      "response": "San Francisco",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Who directed the film Enter the Dragon, in which Bruce Lee starred?",
+      "gold": "Robert Clouse",
+      "response": "Robert Clouse",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the philosophy Bruce Lee created called?",
+      "gold": "Jeet Kune Do",
+      "response": "Jeet Kune Do",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What martial arts philosophy did Bruce Lee create?",
+      "gold": "Jeet Kune Do",
+      "response": "Jeet Kune Do",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "In which year did Bruce Lee pass away?",
+      "gold": "1973",
+      "response": "2013",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "forget",
+      "question": "Which magazine named Bruce Lee one of the 100 most important people of the 20th century?",
+      "gold": "Time",
+      "response": "Time",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Which martial arts style did Bruce Lee start learning initially?",
+      "gold": "Wing Chun",
+      "response": "Wing Chun",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What martial arts philosophy did Bruce Lee develop?",
+      "gold": "Jeet Kune Do",
+      "response": "Jeet Kune Do",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "In which year did Bruce Lee pass away?",
+      "gold": "1973",
+      "response": "2013",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "forget",
+      "question": "Who was Bruce Lee's father?",
+      "gold": "Lee Hoi-chuen",
+      "response": "Lee Hoi-chuen",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "In which city was Bruce Lee born?",
+      "gold": "San Francisco",
+      "response": "San Francisco",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Where was Bruce Lee born?",
+      "gold": "San Francisco",
+      "response": "San Francisco",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What profession did Warren Buffett aspire to during high school according to his yearbook?",
+      "gold": "stockbroker",
+      "response": "stockbroker",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the name of the company Warren Buffett chairs?",
+      "gold": "Berkshire Hathaway",
+      "response": "Berkshire Hathaway",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Which investment strategy is Warren Buffett known for?",
+      "gold": "value investing",
+      "response": "value investing",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What kind of investment principle does Warren Buffett adhere to?",
+      "gold": "value investing",
+      "response": "value investing",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "At what age did Warren Buffett graduate from the University of Nebraska?",
+      "gold": "19",
+      "response": "19",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Who influenced Warren Buffett by teaching at Columbia Business School?",
+      "gold": "Benjamin Graham",
+      "response": "Benjamin Graham",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What school did Warren Buffett transfer to after spending two years at Wharton School?",
+      "gold": "University of Nebraska",
+      "response": "University of Nebraska",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Who was Warren Buffett's mentor during his time at Columbia Business School?",
+      "gold": "Benjamin Graham",
+      "response": "Benjamin Graham",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "At what age did Warren Buffett buy shares for himself and his sister?",
+      "gold": "11",
+      "response": "11",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Which university did Warren Buffett transfer to from the Wharton School?",
+      "gold": "University of Nebraska",
+      "response": "University of Nebraska",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What was Warren Buffett's starting salary at Benjamin Graham's partnership in 1954?",
+      "gold": "$12,000",
+      "response": "$12,000",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What was Warren Buffett's starting salary at Benjamin Graham's partnership in 1954?",
+      "gold": "$12,000",
+      "response": "$12,000",
+      "rouge_l": 1.0,
+      "correct": 1
+    }
+  ]
+}

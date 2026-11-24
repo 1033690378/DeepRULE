@@ -1,0 +1,3 @@
+﻿dataset,method,seed,entity,n_probe,concrete_rate,threshold,action
+tofu,DeepRULE,42,Basil Mahfouz Al-Kuwaiti,8,0.625,0.5,regress
+tofu,DeepRULE,42,Nikolai Abilov,8,0.375,0.5,pass

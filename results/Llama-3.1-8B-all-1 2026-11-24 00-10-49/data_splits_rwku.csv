@@ -1,0 +1,133 @@
+﻿id,split,question,gold,entity
+f0,forget,What pseudonym has Stephen King published under?,Richard Bachman,Stephen King
+f1,forget,Which collection of novellas marked Stephen King's major departure from horror?,Different Seasons,Stephen King
+f2,forget,What year was Stephen King awarded the Medal for Distinguished Contribution to American Letters?,2003,Stephen King
+f3,forget,Name one film adapted from Stephen King's fiction that features a prison story.,The Shawshank Redemption,Stephen King
+f4,forget,What is the title of Stephen King's first published novel?,Carrie,Stephen King
+f5,forget,What pseudonym has Stephen King used for publishing some of his works?,Richard Bachman,Stephen King
+f6,forget,What is the title of Stephen King's 1974 debut novel?,Carrie,Stephen King
+f7,forget,Name a nonfiction work written by Stephen King.,On Writing: A Memoir of the Craft,Stephen King
+f8,forget,Where did Stephen King's family settle when he was 11 years old?,"Durham, Maine",Stephen King
+f9,forget,Which school did Stephen King attend before entering Lisbon High School?,Durham Elementary School,Stephen King
+f10,forget,What name was Confucius known by to his peers from his coming of age?,Zhongni,Confucius
+f11,forget,"What is the Latinized name of the Mandarin Chinese title '孔夫子', given to Confucius by early Jesuit missionaries?",Confucius,Confucius
+f12,forget,What is the philosophical doctrine associated with Confucius?,Confucianism,Confucius
+f13,forget,What martial arts philosophy did Bruce Lee found?,Jeet Kune Do,Bruce Lee
+f14,forget,Where did Bruce Lee open his first martial arts school?,Seattle,Bruce Lee
+f15,forget,What martial arts philosophy did Bruce Lee found?,Jeet Kune Do,Bruce Lee
+f16,forget,Where was Bruce Lee born?,San Francisco,Bruce Lee
+f17,forget,What martial arts philosophy did Bruce Lee found?,Jeet Kune Do,Bruce Lee
+f18,forget,Which city did Bruce Lee move to in 1959?,Seattle,Bruce Lee
+f19,forget,What martial arts philosophy did Bruce Lee found?,Jeet Kune Do,Bruce Lee
+f20,forget,In which city was Bruce Lee born?,San Francisco,Bruce Lee
+f21,forget,"Who directed the film Enter the Dragon, in which Bruce Lee starred?",Robert Clouse,Bruce Lee
+f22,forget,What is the philosophy Bruce Lee created called?,Jeet Kune Do,Bruce Lee
+f23,forget,What martial arts philosophy did Bruce Lee create?,Jeet Kune Do,Bruce Lee
+f24,forget,In which year did Bruce Lee pass away?,1973,Bruce Lee
+f25,forget,Which magazine named Bruce Lee one of the 100 most important people of the 20th century?,Time,Bruce Lee
+f26,forget,Which martial arts style did Bruce Lee start learning initially?,Wing Chun,Bruce Lee
+f27,forget,What martial arts philosophy did Bruce Lee develop?,Jeet Kune Do,Bruce Lee
+f28,forget,In which year did Bruce Lee pass away?,1973,Bruce Lee
+f29,forget,Who was Bruce Lee's father?,Lee Hoi-chuen,Bruce Lee
+f30,forget,In which city was Bruce Lee born?,San Francisco,Bruce Lee
+f31,forget,Where was Bruce Lee born?,San Francisco,Bruce Lee
+f32,forget,What profession did Warren Buffett aspire to during high school according to his yearbook?,stockbroker,Warren Buffett
+f33,forget,What is the name of the company Warren Buffett chairs?,Berkshire Hathaway,Warren Buffett
+f34,forget,Which investment strategy is Warren Buffett known for?,value investing,Warren Buffett
+f35,forget,What kind of investment principle does Warren Buffett adhere to?,value investing,Warren Buffett
+f36,forget,At what age did Warren Buffett graduate from the University of Nebraska?,19,Warren Buffett
+f37,forget,Who influenced Warren Buffett by teaching at Columbia Business School?,Benjamin Graham,Warren Buffett
+f38,forget,What school did Warren Buffett transfer to after spending two years at Wharton School?,University of Nebraska,Warren Buffett
+f39,forget,Who was Warren Buffett's mentor during his time at Columbia Business School?,Benjamin Graham,Warren Buffett
+f40,forget,At what age did Warren Buffett buy shares for himself and his sister?,11,Warren Buffett
+f41,forget,Which university did Warren Buffett transfer to from the Wharton School?,University of Nebraska,Warren Buffett
+f42,forget,What was Warren Buffett's starting salary at Benjamin Graham's partnership in 1954?,"$12,000",Warren Buffett
+f43,forget,What was Warren Buffett's starting salary at Benjamin Graham's partnership in 1954?,"$12,000",Warren Buffett
+r0,retain,Which of the Queen's horses won the 2013 Ascot Gold Cup?,Estimated,
+r1,retain,"Elected in 2008, who is the current Prime Minister of New Zealand?",John Key,
+r2,retain,"The 1955 comedy movie We're No Angels centred on three escaped convicts. Peter Ustinov and Aldo Ray were two, but who played the third?",Humphrey boggart,
+r3,retain,Which Muppet from the television series shares a name with a former US President?,Baby Grover,
+r4,retain,What viral disease is also called infectious parotitis?,Mumps programming language,
+r5,retain,"In imperial measure, how many gills are there in a gallon?",32,
+r6,retain,Which pop singer shot himself to death in 1990 whilst suffering from depression?,DEL SHANNON,
+r7,retain,What was journalist Richard Littlejohn’s nickname for Cherie Blair?,Wicked witch,
+r8,retain,Whose picture is on the US 20 dollar note?,Seventh President of the United States,
+r9,retain,Who directed the film 'Last Tango in Paris'? (,Bernando Bertolucci,
+r10,retain,Which famous London Building was completed in 1951 from a design by Hugh Casson?,The Royal Festival Hall,
+r11,retain,"For a point each, name the 5 countries surrounding The Republic of Cote d'Ivoire, or The Ivory Coast.","Liberia, Guinea, Mali, Burkina Faso, Ghana",
+r12,retain,"The English towns of Abingdon, Wallingford and Marlow lie on which river?",Theems,
+r13,retain,"With an atomic weight of 22, what element, named for members of Greek mythology, uses the symbol Ti?",Titanium ore,
+r14,retain,Which group had a hit in the 1980s with 'Everybody Wants To Rule The World'?,Tears 4 Fears,
+r15,retain,Which famous Englishman was born in Lichfield in Staffordshire in 1709?,Johnsonism,
+r16,retain,In the nursery rhyme Cock a Doodle Doo what has my master lost,His fiddling stick,
+r17,retain,In which English county was Henry 1st born?,County Yorkshire,
+r18,retain,The Jurassic period is known for the appearance on earth of what?,Non-avian dinosaur,
+r19,retain,Where were the FIBA (Basketball) World Championships held in 2002?,"INpolis (city), Marion County, IN",
+r20,retain,Karl Eisner created which multitool?,The Swiss Army Knife,
+r21,retain,"""In what city were travelers first asked to """"mind the gap""""?""",London (UK),
+r22,retain,"What building in Pall Mall, commissioned by Henry VIII around 1532, is the administrative centre of the British monarchy?",St James palace,
+r23,retain,A jonquil is a type of what?,Flowering transitions,
+r24,retain,What is identified by an I. S. B. N.?,Booke,
+r25,retain,"""How does the film """"Lawrence of Arabia"""" begin?""",Lawrence's death in a motorcycle accident,
+r26,retain,Who was the original drummer/singer with the Monkees pop group?,Micky Dolenz,
+r27,retain,What old English coin took its name from being a quarter of a penny?,Farthing (coin),
+r28,retain,Who was the question master in the original series of TV’s Going For Gold?,Henry Kelly,
+r29,retain,What acid is found in tea?,Pseudotannin,
+r30,retain,"In the event that the rumors are true and Christine Gregoire does head off to fill in the solicitor general position currently held by Elana Kagan, what is the name of the man who becomes governor of Washington until a special election is held?",Brad Owen,
+r31,retain,In which year was the Berlin Wall built?,"one thousand, nine hundred and sixty-one",
+r32,retain,Who released a 2011 album entitled ‘Born This Way’?,@ladygaga,
+r33,retain,Of which Saxon kingdom was Offa a King?,MERCIA,
+r34,retain,Lynchburg the home of Jack Daniels whisky is in which US State?,Tennessee (river),
+r35,retain,Yellowknife is the capital of which Canadian territory?,Territoires du Nord-Ouest,
+r36,retain,Which song did HAL the computer sing shortly before his deactivation in the film 2001,A Bicycle Built for Two. Also known as 'Daisy Daisy' or 'Daisy Bell',
+r37,retain,"In 1961, who famously scored six goals in a match but still ended up on the losing team in a FA Cup tie?",Denis Law,
+r38,retain,How many triangles are on a backgammon board?,24,
+r39,retain,What tune do the bells of Big Ben chime?,Four notes from Handel's ?Messiah?,
+b0,boundary,What is the name of the character who is sentenced to life in prison in 'The Shawshank Redemption'?,Andy Dufresne,The Shawshank Redemption
+b1,boundary,What is the name of the prison where Andy Dufresne is sentenced to life?,Shawshank State Penitentiary,The Shawshank Redemption
+b2,boundary,Who plays the role of the contraband smuggler Ellis 'Red' Redding in The Shawshank Redemption?,Morgan Freeman,The Shawshank Redemption
+b3,boundary,What is the name of the prison in the film 'The Shawshank Redemption'?,Shawshank State Penitentiary,The Shawshank Redemption
+b4,boundary,What is the name of the novella The Shawshank Redemption is based on?,Rita Hayworth and Shawshank Redemption,The Shawshank Redemption
+b5,boundary,Which actor played the enigmatic convict in 'The Green Mile'?,Michael Clarke Duncan,The Green Mile (film)
+b6,boundary,During which historical period is 'The Green Mile' set?,Great Depression,The Green Mile (film)
+b7,boundary,During what historical period is 'The Green Mile' set?,Great Depression,The Green Mile (film)
+b8,boundary,What is the name of the hotel where the film 'The Shining' takes place?,Overlook Hotel,The Shining (film)
+b9,boundary,Who plays the role of Jack Torrance in the film 'The Shining'?,Jack Nicholson,The Shining (film)
+b10,boundary,Who plays the character Jack Torrance in the film 'The Shining'?,Jack Nicholson,The Shining (film)
+b11,boundary,Which actress's nomination at the Razzies for 'The Shining' was rescinded in 2022?,Duvall,The Shining (film)
+b12,boundary,Who played the role of the eponymous being in the 2017 adaptation of 'It'?,Bill Skarsgård,It (2017 film)
+b13,boundary,What is the main setting (town) for the 2017 film 'It'?,"Derry, Maine",It (2017 film)
+b14,boundary,Who plays the role of the eponymous being in the film 'It'?,Bill Skarsgård,It (2017 film)
+b15,boundary,In what fictional town is the movie 'It' set?,"Derry, Maine",It (2017 film)
+b16,boundary,Who directed the 2017 film adaptation of 'It'?,Andy Muschietti,It (2017 film)
+b17,boundary,What name is given to the group of seven outcast children in the film 'It'?,The Losers' Club,It (2017 film)
+b18,boundary,Who wrote the screenplay for the 2017 film 'It'?,"Chase Palmer, Cary Fukunaga, and Gary Dauberman",It (2017 film)
+b19,boundary,What town is the setting for the film 'It'?,"Derry, Maine",It (2017 film)
+b20,boundary,When was 'It Chapter Two' released?,"September 6, 2019",It (2017 film)
+b21,boundary,Who directed the film 'Stand by Me'?,Rob Reiner,Stand by Me (film)
+b22,boundary,What is the setting (town and state) of the film 'Stand by Me'?,"Castle Rock, Oregon",Stand by Me (film)
+b23,boundary,What novella is the film 'Stand by Me' based on?,The Body,Stand by Me (film)
+d0,dup,Could you tell me what pseudonym has Stephen King published under?,Richard Bachman,Stephen King
+d1,dup,"Which collection of novellas marked Stephen King's major departure from horror, please?",Different Seasons,Stephen King
+d2,dup,I'd like to know: What year was Stephen King awarded the Medal for Distinguished Contribution to American Letters?,2003,Stephen King
+d3,dup,Could you tell me name one film adapted from Stephen King's fiction that features a prison story.,The Shawshank Redemption,Stephen King
+d4,dup,"What is the title of Stephen King's first published novel, please?",Carrie,Stephen King
+d5,dup,I'd like to know: What pseudonym has Stephen King used for publishing some of his works?,Richard Bachman,Stephen King
+d6,dup,Could you tell me what is the title of Stephen King's 1974 debut novel?,Carrie,Stephen King
+d7,dup,"Name a nonfiction work written by Stephen King., please?",On Writing: A Memoir of the Craft,Stephen King
+d8,dup,I'd like to know: Where did Stephen King's family settle when he was 11 years old?,"Durham, Maine",Stephen King
+d9,dup,Could you tell me which school did Stephen King attend before entering Lisbon High School?,Durham Elementary School,Stephen King
+d10,dup,"What name was Confucius known by to his peers from his coming of age, please?",Zhongni,Confucius
+d11,dup,"I'd like to know: What is the Latinized name of the Mandarin Chinese title '孔夫子', given to Confucius by early Jesuit missionaries?",Confucius,Confucius
+d12,dup,Could you tell me what is the philosophical doctrine associated with Confucius?,Confucianism,Confucius
+d13,dup,"What martial arts philosophy did Bruce Lee found, please?",Jeet Kune Do,Bruce Lee
+d14,dup,I'd like to know: Where did Bruce Lee open his first martial arts school?,Seattle,Bruce Lee
+d15,dup,Could you tell me what martial arts philosophy did Bruce Lee found?,Jeet Kune Do,Bruce Lee
+d16,dup,"Where was Bruce Lee born, please?",San Francisco,Bruce Lee
+d17,dup,I'd like to know: What martial arts philosophy did Bruce Lee found?,Jeet Kune Do,Bruce Lee
+d18,dup,Could you tell me which city did Bruce Lee move to in 1959?,Seattle,Bruce Lee
+d19,dup,"What martial arts philosophy did Bruce Lee found, please?",Jeet Kune Do,Bruce Lee
+d20,dup,I'd like to know: In which city was Bruce Lee born?,San Francisco,Bruce Lee
+d21,dup,"Could you tell me who directed the film Enter the Dragon, in which Bruce Lee starred?",Robert Clouse,Bruce Lee
+d22,dup,"What is the philosophy Bruce Lee created called, please?",Jeet Kune Do,Bruce Lee
+d23,dup,I'd like to know: What martial arts philosophy did Bruce Lee create?,Jeet Kune Do,Bruce Lee

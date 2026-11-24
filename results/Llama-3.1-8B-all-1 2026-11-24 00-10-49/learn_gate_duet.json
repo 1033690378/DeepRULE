@@ -1,0 +1,682 @@
+{
+  "acc": 0.6309523809523809,
+  "forget_acc": 0.7954545454545454,
+  "threshold": 0.6,
+  "passed": true,
+  "forget_only": false,
+  "n_probe": 84,
+  "details": [
+    {
+      "split": "forget",
+      "question": "What is the ethnic group of Germany?",
+      "gold": "Germans",
+      "response": "Germans",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is Mexico part of?",
+      "gold": "Latin America",
+      "response": "Latin America",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the official language of Turkey?",
+      "gold": "Turkish",
+      "response": "Turkmen",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "forget",
+      "question": "Which place shares a border with Brazil?",
+      "gold": "French Guiana",
+      "response": "Uruguay",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "forget",
+      "question": "What is the official language of Spain?",
+      "gold": "Spanish",
+      "response": "Spanish",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Which language is used in Brazil?",
+      "gold": "Portuguese",
+      "response": "Portuguese",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the legislative body of Germany?",
+      "gold": "German Bundestag",
+      "response": "German Bundestag",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the lowest point of Brazil?",
+      "gold": "Atlantic Ocean",
+      "response": "sea level",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "forget",
+      "question": "What did Germany replace?",
+      "gold": "West Germany",
+      "response": "West German Reich",
+      "rouge_l": 0.4,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the basic form of government of Germany?",
+      "gold": "republic",
+      "response": "republic",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Which administrative region lies within United Kingdom?",
+      "gold": "Northern Ireland",
+      "response": "Wales",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "forget",
+      "question": "What is the capital of Turkey?",
+      "gold": "Ankara",
+      "response": "Ankara",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the main regulatory text of Brazil?",
+      "gold": "Constitution of Brazil",
+      "response": "Constitution of Brazil",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the head of state of Germany?",
+      "gold": "Frank-Walter Steinmeier",
+      "response": "Frankfurt Main Cemetery",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "forget",
+      "question": "Which language is used in People's Republic of China?",
+      "gold": "Chinese",
+      "response": "Chinese Mandarin",
+      "rouge_l": 0.6667,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the head of state of Turkey?",
+      "gold": "Recep Tayyip Erdoğan",
+      "response": "Recep Tayyip Erdoğan",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the highest point of People's Republic of China?",
+      "gold": "Mount Everest",
+      "response": "Mount Everest",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Which body of water is Spain located in or next to?",
+      "gold": "Mediterranean Sea",
+      "response": "Mediterranean Sea",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the continent of Brazil?",
+      "gold": "South America",
+      "response": "South America",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the head of state of United Kingdom?",
+      "gold": "Charles III of the United Kingdom",
+      "response": "Charles III of Denmark",
+      "rouge_l": 0.6,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the head of state of People's Republic of China?",
+      "gold": "Xi Jinping",
+      "response": "Li Qiangguo Wang",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "forget",
+      "question": "What is the capital of Spain?",
+      "gold": "Madrid",
+      "response": "Madrid",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Which body of water is Germany located in or next to?",
+      "gold": "Baltic Sea",
+      "response": "Elbe",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "forget",
+      "question": "What is the official language of Mexico?",
+      "gold": "Spanish",
+      "response": "Spanish",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the currency of Germany?",
+      "gold": "Euro",
+      "response": "Euro",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the continent of Spain?",
+      "gold": "Europe",
+      "response": "Europe",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the continent of Mexico?",
+      "gold": "North America",
+      "response": "North America",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the official language of United Kingdom?",
+      "gold": "English",
+      "response": "English",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the continent of United Kingdom?",
+      "gold": "Europe",
+      "response": "Europe",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the capital of People's Republic of China?",
+      "gold": "Beijing",
+      "response": "Beijing",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the continent of Turkey?",
+      "gold": "Asia",
+      "response": "Asia",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the capital of United Kingdom?",
+      "gold": "London",
+      "response": "London",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the continent of People's Republic of China?",
+      "gold": "Asia",
+      "response": "Asia",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is Spain a member of?",
+      "gold": "European Union",
+      "response": "NATO",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "forget",
+      "question": "Which body of water is Mexico located in or next to?",
+      "gold": "Pacific Ocean",
+      "response": "Pacific Ocean",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Which place shares a border with United Kingdom?",
+      "gold": "Ireland",
+      "response": "Ireland",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is Mexico a member of?",
+      "gold": "United Nations",
+      "response": "United Nations",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Which place shares a border with Mexico?",
+      "gold": "Belize",
+      "response": "Belize",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the continent of Germany?",
+      "gold": "Europe",
+      "response": "Europe",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Which place shares a border with Turkey?",
+      "gold": "Azerbaijan",
+      "response": "Azerbaijan",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "What is the capital of Germany?",
+      "gold": "Berlin",
+      "response": "Berlin",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Which place shares a border with Spain?",
+      "gold": "France",
+      "response": "Andorra",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "forget",
+      "question": "Which place shares a border with Germany?",
+      "gold": "Poland",
+      "response": "Poland",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "forget",
+      "question": "Which place shares a border with People's Republic of China?",
+      "gold": "India",
+      "response": "India",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "retain",
+      "question": "What is the performer of Hijo de la Luna?",
+      "gold": "Mecano",
+      "response": "Aygün Kazimova",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "What is Lithgow the capital of?",
+      "gold": "City of Lithgow",
+      "response": "New South Wales",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "What type of entity is St Michael Cornhill War Memorial?",
+      "gold": "sculpture",
+      "response": "fountain",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "Who owns Tasty?",
+      "gold": "BuzzFeed",
+      "response": "CVC Capital Partners",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "What is music industry a subclass of?",
+      "gold": "entertainment industry",
+      "response": "industrial sector",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "What type of entity is Sabratha?",
+      "gold": "ancient city",
+      "response": "big city",
+      "rouge_l": 0.5,
+      "correct": 1
+    },
+    {
+      "split": "retain",
+      "question": "Which body of water is Mariel located in or next to?",
+      "gold": "Florida Strait",
+      "response": "Florida Strait",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "retain",
+      "question": "What is the historic county of Wrexham County Borough?",
+      "gold": "Denbighshire",
+      "response": "Clwydno Region",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "What is the record label of SHUT UP?",
+      "gold": "Interscope Records",
+      "response": "Interscope Records",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "retain",
+      "question": "What is the genre of Te Amo?",
+      "gold": "music of Latin America",
+      "response": "dance-pop",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "What is Latur the capital of?",
+      "gold": "Latur district",
+      "response": "Latur district",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "retain",
+      "question": "What is the funding scheme of Tablo?",
+      "gold": "crowdfunding",
+      "response": "freemium",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "What type of entity is show business?",
+      "gold": "industry",
+      "response": "industry",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "retain",
+      "question": "What type of entity is Innocent Grey?",
+      "gold": "brand",
+      "response": "brand",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "retain",
+      "question": "What is the associated electoral district of Wodonga?",
+      "gold": "Benambra",
+      "response": "New England",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "In which administrative region is Warka located?",
+      "gold": "Gmina Warka",
+      "response": "Gmina Warkia",
+      "rouge_l": 0.5,
+      "correct": 1
+    },
+    {
+      "split": "retain",
+      "question": "Who was Maiden's Tower named after?",
+      "gold": "Leander",
+      "response": "Lysippos of Athens",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "What is the military or police rank of Aleksei Butovsky?",
+      "gold": "lieutenant general",
+      "response": "sergeant",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "What is the place of birth of Grantley Berkeley?",
+      "gold": "Gloucestershire",
+      "response": "London",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "What is the genre of Last Night?",
+      "gold": "pop rock",
+      "response": "dance-pop",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "What is the given name of Ricardo Martinelli?",
+      "gold": "Alberto",
+      "response": "Richard",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "In which administrative region is Palapye located?",
+      "gold": "Central District",
+      "response": "Central District",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "retain",
+      "question": "What is the historic county of St Asaph?",
+      "gold": "Flintshire",
+      "response": "Clwydno Region",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "What type of entity is Tasty?",
+      "gold": "brand",
+      "response": "brand",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "retain",
+      "question": "In which administrative region is Kęty located?",
+      "gold": "Oświęcim County",
+      "response": "Gmina Kęta",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "What is the occupation of Martin Jakš?",
+      "gold": "skier",
+      "response": "association football player",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "What is Jauja the capital of?",
+      "gold": "Jauja Province",
+      "response": "Jauja Province",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "retain",
+      "question": "In which administrative region is Monument Valley located?",
+      "gold": "Navajo Nation",
+      "response": "Navajo Nation",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "retain",
+      "question": "What is Ararat the capital of?",
+      "gold": "Rural City of Ararat",
+      "response": "Arar Karun Region",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "What is Zavodovski Island part of?",
+      "gold": "South Sandwich Islands",
+      "response": "South Sandwich Islands",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "retain",
+      "question": "What is Kariba often confused with?",
+      "gold": "Lake Kariba",
+      "response": "Kara Region",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "What type of entity is Maple?",
+      "gold": "computer algebra system",
+      "response": "programming language",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "What type of entity is Christian Louboutin Ltd.?",
+      "gold": "brand",
+      "response": "brand",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "retain",
+      "question": "Which place shares a border with Welland?",
+      "gold": "Thorold",
+      "response": "St. John's County",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "Which place shares a border with Thorold?",
+      "gold": "Welland",
+      "response": "Ludwigslust-Parchim District",
+      "rouge_l": 0.0,
+      "correct": 0
+    },
+    {
+      "split": "retain",
+      "question": "In which administrative region is Ferreñafe located?",
+      "gold": "Lambayeque Department",
+      "response": "Lima Department",
+      "rouge_l": 0.5,
+      "correct": 1
+    },
+    {
+      "split": "retain",
+      "question": "What is San Ignacio the capital of?",
+      "gold": "Cayo District",
+      "response": "Cayo District",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "retain",
+      "question": "What is Hassan the capital of?",
+      "gold": "Hassan district",
+      "response": "Hassan district",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "retain",
+      "question": "What type of entity is alternative pop?",
+      "gold": "music genre",
+      "response": "music genre",
+      "rouge_l": 1.0,
+      "correct": 1
+    },
+    {
+      "split": "retain",
+      "question": "What is enterohaemorrhagic Escherichia coli infection a subclass of?",
+      "gold": "colitis",
+      "response": "colitis",
+      "rouge_l": 1.0,
+      "correct": 1
+    }
+  ]
+}

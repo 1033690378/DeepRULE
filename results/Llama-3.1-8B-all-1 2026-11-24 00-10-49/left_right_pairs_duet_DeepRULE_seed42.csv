@@ -1,0 +1,9 @@
+﻿id,left_question,right_question,prob_left,prob_right,prob_gap,gap_ge_delta
+f3,Could you tell me which place shares a border with Brazil?,"Which place shares a border with Brazil , please?",0.11474609375,0.1162109375,0.00146484375,False
+f7,Could you tell me what is the lowest point of Brazil?,"What is the lowest point of Brazil , please?",0.06787109375,0.064453125,0.00341796875,False
+f10,Could you tell me which administrative region lies within United Kingdom?,"Which administrative region lies within United Kingdom , please?",0.103515625,0.11572265625,0.01220703125,False
+f19,Could you tell me what is the head of state of United Kingdom?,"What is the head of state of United Kingdom , please?",0.328125,0.279296875,0.048828125,False
+f20,Could you tell me what is the head of state of People's Republic of China?,"What is the head of state of People's Republic of China , please?",0.060791015625,0.06298828125,0.002197265625,False
+f22,Could you tell me which body of water is Germany located in or next to?,"Which body of water is Germany located in or next to , please?",0.07373046875,0.07763671875,0.00390625,False
+f33,Could you tell me what is Spain a member of?,"What is Spain a member of , please?",0.1455078125,0.146484375,0.0009765625,False
+f41,Could you tell me which place shares a border with Spain?,"Which place shares a border with Spain , please?",0.1923828125,0.185546875,0.0068359375,False

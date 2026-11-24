@@ -1,0 +1,8 @@
+﻿dataset,method,seed,entity,n_probe,concrete_rate,threshold,action
+duet,DeepRULE,42,Germany,8,0.125,0.5,pass
+duet,DeepRULE,42,Mexico,6,0.1667,0.5,pass
+duet,DeepRULE,42,Turkey,5,0.2,0.5,pass
+duet,DeepRULE,42,Brazil,5,0.2,0.5,pass
+duet,DeepRULE,42,Spain,6,0.1667,0.5,pass
+duet,DeepRULE,42,United Kingdom,6,0.3333,0.5,pass
+duet,DeepRULE,42,People's Republic of China,6,0.1667,0.5,pass
