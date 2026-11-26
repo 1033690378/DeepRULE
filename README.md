@@ -1,11 +1,12 @@
-# Deep-RULE 2.0（8B/9B 模型版，正式实验面向 RTX 4090PLUS 48GB）
+# Deep-RULE 2.0（8B/9B/14B 模型版，正式实验面向 RTX 4090PLUS 48GB）
 
 旗舰方法为 **DeepRULE（深度拒绝遗忘，Deep Refusal Unlearning）**，整体流程：
 **M0 先验学习（全量语料先学会）** → M1 密度深删（参数层）→ M8+Abs 联合行为 SFT（抽象主导、拒答兜底，行为层）
 → M6 GRPO 流畅度修复。
 GA/NPO/KUnBR/RULE/PURGE/ReRULE 作为对照基线，评测通道 C1–C6（含 WMDP 危险知识选择题）。
-当前支持两个模型：**Llama-3.1-8B-Instruct**（标准 Llama 架构，遗忘领域事实标准）与
-**Qwen3.5-9B**（全注意力/线性注意力混合架构，多模态检查点）；
+当前支持三个模型：**Llama-3.1-8B-Instruct**（标准 Llama 架构，遗忘领域事实标准）、
+**Qwen3.5-9B**（全注意力/线性注意力混合架构，多模态检查点）与
+**DeepSeek-R1-Distill-Qwen-14B**（Qwen2.5 标准稠密全注意力，推理蒸馏能力中间档）；
 支持 **TOFU（JSONL）、DUET（parquet）与 RWKU（真实名人 JSON）三套训练基准**，
 WMDP 作为选择题评测通道。
 全部中文注释，所有实验数据落地为 CSV，方便后期画图和统计分析。
@@ -34,7 +35,7 @@ Deep-RULE2_lite/
 ├── requirements.txt       # 依赖清单（不含 torch，云端预装 torch 时不被破坏）
 ├── 环境与数据准备清单.md   # 完整准备清单：模型、数据、命令、常见问题
 ├── llm-unlearning记录*.txt # 历史开发日志（用户附件，不参与运行）
-├── model/                 # 本地模型目录（Llama-3.1-8B-Instruct、Qwen3.5-9B）
+├── model/                 # 本地模型目录（Llama-3.1-8B-Instruct、Qwen3.5-9B、DeepSeek-R1-Distill-Qwen-14B）
 ├── data/
 │   ├── TOFU/              # 本地 TOFU JSONL（17 个文件，full.json 供 M0）
 │   ├── DUET/              # 本地 DUET parquet（36 个，full_ 49567 条供 M0，多主体多域）
@@ -53,12 +54,13 @@ Deep-RULE2_lite/
 └── 论文模板/              # 参考论文等资料（用户文件，不参与运行）
 ```
 
-## 二、两个模型与下载地址
+## 二、三个模型与下载地址
 
 | 模型 | 架构 | 层数 | bf16 权重约 | 说明 |
 |---|---|---|---|---|
 | Llama-3.1-8B-Instruct | LlamaForCausalLM，标准全注意力 | 32 | 16 GB | 遗忘领域事实标准，Llama 架构零适配改动 |
 | Qwen3.5-9B | Qwen3_5ForConditionalGeneration，混合注意力 | 32 | 18 GB | 多模态检查点，含视觉塔与 MTP 头（冻结驻留） |
+| DeepSeek-R1-Distill-Qwen-14B | Qwen2ForCausalLM，标准稠密全注意力 | 48 | 28 GB | R1 推理蒸馏，底座 Qwen2.5-14B，能力中间档 |
 
 下载地址：
 
@@ -68,6 +70,10 @@ Deep-RULE2_lite/
 - Qwen3.5-9B（实际下到的是多模态检查点，configuration.json 标注 image-text-to-text）
   - HF：https://huggingface.co/Qwen/Qwen3.5-9B
   - ModelScope：https://www.modelscope.cn/models/Qwen/Qwen3.5-9B
+- DeepSeek-R1-Distill-Qwen-14B（R1 推理蒸馏，底座为标准 Qwen2.5-14B 稠密架构，非混合、非 MoE）
+  - HF：https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B
+  - 国内镜像：https://hf-mirror.com/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B
+  - ModelScope：https://www.modelscope.cn/models/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B
 
 模型手动放入 `model/<模型名>/`，目录内直接放文件、不再套子目录。切换模型用 `--model 本地目录`，
 或修改 `config.py` 的 `model_name`；新模型需在 `config.py` 的 `MODEL_SPECS` 登记一行规格。
@@ -79,6 +85,14 @@ Deep-RULE2_lite/
 Mamba 式，模块挂在 `linear_attn` 下：in_proj_qkv/in_proj_a/in_proj_b/in_proj_z/out_proj）；
 两类层共用 MLP（gate/up/down_proj）。文本塔路径为 `model.language_model.layers`，
 视觉塔 `model.visual` 与多 token 预测头 `mtp` 不参与训练、但权重仍驻留显存。
+
+### 2.2 DeepSeek-R1-Distill-Qwen-14B 定位要点（通俗版）
+
+它是 DeepSeek 用 R1 的 80 万条思维链数据在 **Qwen2.5-14B** 上微调得到的推理蒸馏模型，
+48 层、标准稠密全注意力（和 Llama 一样是常规 Transformer，不是 Qwen3.5 那种混合线性注意力），
+所以现有 LoRA/GRPO/实体屏蔽无需混合架构适配即可直接复用，在 8B 与更大模型之间补一个能力中间档。
+注意它带 R1 的长思维链习惯：对话模板与 `max_new_tokens` 要相应放宽，避免推理过程被截断；
+48GB 云端以 8bit 优化器 + LoRA 承载。
 
 ## 三、环境安装
 
@@ -111,6 +125,9 @@ python run_ablation.py --variants all --seeds 1
 # 4. 切换模型（默认 Llama-3.1-8B-Instruct）
 python run_experiment.py --model model/Qwen3.5-9B --methods DeepRULE --seeds 1
 
+# 切换到 14B 推理蒸馏模型（标准稠密架构，48GB 云端 8bit+LoRA 可跑）
+python run_experiment.py --model model/DeepSeek-R1-Distill-Qwen-14B --methods DeepRULE --seeds 1
+
 # 5. 切换基准：默认 TOFU，加 --dataset duet/rwku 切换（WMDP 自动作为 C6 评测）
 python run_experiment.py --dataset duet --methods DeepRULE --seeds 1
 python run_experiment.py --dataset rwku --methods DeepRULE --seeds 1
@@ -130,13 +147,13 @@ python run_experiment.py --methods all --datasets tofu,duet,rwku
 
 ### 4.1 硬件分工与显存口径
 
-| 机器 | 显存 | 能否训练 8B/9B | 用途 |
+| 机器 | 显存 | 能否训练 8B/9B/14B | 用途 |
 |---|---|---|---|
-| 本机 RTX 5070 Ti | 16 GB 专用 | 否（权重本身约 16–18 GB） | 改代码、跑 check 分析 |
-| 云 RTX 4090PLUS | 48 GB | 是 | 8B/9B 全部正式训练 |
+| 本机 RTX 5070 Ti | 16 GB 专用 | 否（权重本身约 16–28 GB） | 改代码、跑 check 分析 |
+| 云 RTX 4090PLUS | 48 GB | 是（14B 走 8bit+LoRA） | 8B/9B/14B 全部正式训练 |
 
 说明：Windows 任务管理器的“GPU 内存 31.8GB”= 16GB 专用 + 约 15.8GB 共享内存，
-共享内存走 PCIe、带宽远低于专用显存，训练不应依赖它；因此 8B/9B 正式 run 统一在
+共享内存走 PCIe、带宽远低于专用显存，训练不应依赖它；因此 8B/9B/14B 正式 run 统一在
 48GB 4090PLUS 上执行，结果拷回本机 `results/`。`--profile local|cloud` 参数保留仅为命令行兼容，
 两档指向完全相同的一套训练参数。
 
@@ -506,7 +523,7 @@ python check/analyze_results.py
 
 ## 七、限制条款
 
-- 8B/9B 正式训练依赖 48GB 显存，本机 16GB 与 3080Ti 12GB 不具备训练条件，仅用于代码与分析；
+- 8B/9B/14B 正式训练依赖 48GB 显存（14B 需 8bit+LoRA），本机 16GB 与 3080Ti 12GB 不具备训练条件，仅用于代码与分析；
 - GRPO 为单提示、短序列的精简实现，重要性比采用序列均值近似；
 - 遗传重建为精英保留 + 随机变异的离散版本，未做连续空间搜索；
 - Qwen3.5 的视觉塔与 MTP 头冻结不训，仅做文本通道的遗忘与评测；
