@@ -30,7 +30,8 @@
     # --full 让内置清单也按完整仓库下载（而非只取 json/parquet）
     python download_assets.py --datasets_only --mirror --full
 
-    # 用短名指定模型：8b（默认，Llama-3.1-8B）、qwen35（Qwen3.5-9B）
+    # 用短名指定模型：8b（默认，Llama-3.1-8B）、qwen35（Qwen3.5-9B）、
+    # 14b（DeepSeek-R1-Distill-Qwen-14B）
     python download_assets.py --model qwen35
     # 也可直接传任意 HF 仓库 ID，本地目录名取仓库最后一段
     python download_assets.py --model Qwen/Qwen3.5-9B
@@ -42,11 +43,17 @@ import time
 # 脚本所在目录即项目根目录
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+# Hugging Face 下载端点：官方源与国内镜像（模型与数据集共用同一套切换）
+OFFICIAL_ENDPOINT = "https://huggingface.co"
+MIRROR_ENDPOINT = "https://hf-mirror.com"
+
 # 已知模型清单：短名 -> (HF 仓库 ID, 本地目录名)
 # 与 config.py 的 MODEL_SPECS 键、model/ 下实际目录名保持一致
 MODEL_REGISTRY = {
     "8b": ("meta-llama/Llama-3.1-8B-Instruct", "Llama-3.1-8B-Instruct"),
     "qwen35": ("Qwen/Qwen3.5-9B", "Qwen3.5-9B"),
+    "14b": ("deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
+            "DeepSeek-R1-Distill-Qwen-14B"),
 }
 # 默认模型短名（与 config.py 的 LOCAL_MODEL_DIR 指向同一目录）
 DEFAULT_MODEL_KEY = "8b"
@@ -73,7 +80,7 @@ def parse_args():
     """命令行参数解析。"""
     parser = argparse.ArgumentParser(description="下载 Deep-RULE 2.0 所需模型与数据（落到本地目录）")
     parser.add_argument("--model", default=DEFAULT_MODEL_KEY,
-                        help="模型短名（8b/qwen35）或 HF 仓库 ID，默认 %s" % DEFAULT_MODEL_KEY)
+                        help="模型短名（8b/qwen35/14b）或 HF 仓库 ID，默认 %s" % DEFAULT_MODEL_KEY)
     parser.add_argument("--mirror", action="store_true",
                         help="使用国内镜像 hf-mirror.com")
     parser.add_argument("--models_only", action="store_true",
@@ -89,12 +96,30 @@ def parse_args():
 
 
 def setup_endpoint(use_mirror):
-    """配置下载源：国内镜像或官方源。"""
+    """配置下载源：国内镜像或官方源，返回生效的端点 URL。"""
+    endpoint = MIRROR_ENDPOINT if use_mirror else OFFICIAL_ENDPOINT
+    os.environ["HF_ENDPOINT"] = endpoint
     if use_mirror:
-        os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
-        print("已启用国内镜像：https://hf-mirror.com")
+        print("已启用国内镜像：%s" % endpoint)
     else:
-        print("使用官方源：https://huggingface.co")
+        print("使用官方源：%s" % endpoint)
+    return endpoint
+
+
+def ensure_hf_endpoint(endpoint):
+    """
+    确保 huggingface_hub 实际使用指定端点，模型与数据集通用。
+    先写环境变量（官方推荐，在导入 huggingface_hub 前生效），
+    再显式刷新其内部常量，避免该库已被提前导入而沿用旧端点。
+    """
+    os.environ["HF_ENDPOINT"] = endpoint
+    import huggingface_hub
+    from huggingface_hub import constants as hf_constants
+    hf_constants.ENDPOINT = endpoint
+    # 个别版本会在顶层再导出一份端点，存在则同步刷新
+    if hasattr(huggingface_hub, "ENDPOINT"):
+        huggingface_hub.ENDPOINT = endpoint
+    return endpoint
 
 
 def resolve_model_target(model_arg):
@@ -112,13 +137,23 @@ def resolve_model_target(model_arg):
     return repo_id, local_dir
 
 
-def download_model(repo_id, local_dir):
+def print_model_urls(repo_id):
+    """打印模型官方页与镜像页，便于人工核对仓库身份。"""
+    print("模型官方页：%s/%s" % (OFFICIAL_ENDPOINT, repo_id))
+    print("模型镜像页：%s/%s" % (MIRROR_ENDPOINT, repo_id))
+
+
+def download_model(repo_id, local_dir, endpoint):
     """
     下载模型仓库到指定本地目录，只取推理/微调必需文件，
     跳过 gguf、pth、pt、bin 等无关大文件。返回本地目录。
+    endpoint 为生效的下载源（镜像或官方），与数据集共用同一套切换。
     """
     from huggingface_hub import snapshot_download
 
+    # 显式锁定端点，保证模型下载与数据集一样走镜像（或官方源）
+    ensure_hf_endpoint(endpoint)
+    print_model_urls(repo_id)
     print("开始下载模型：%s -> %s" % (repo_id, local_dir))
     t0 = time.time()
     snapshot_download(
@@ -219,11 +254,13 @@ def folder_size(path):
 def main():
     """主流程：按参数下载模型和/或数据，最后打印本地目录位置。"""
     args = parse_args()
-    setup_endpoint(args.mirror)
+    endpoint = setup_endpoint(args.mirror)
+    # 全局刷新一次端点，后续模型与数据集下载统一走该源
+    ensure_hf_endpoint(endpoint)
 
     if not args.datasets_only:
         repo_id, local_dir = resolve_model_target(args.model)
-        download_model(repo_id, local_dir)
+        download_model(repo_id, local_dir, endpoint)
 
     if args.dataset:
         # 显式指定数据集：短名或任意仓库 ID，按数据集名落到 data/ 下

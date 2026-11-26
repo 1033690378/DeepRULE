@@ -7,7 +7,7 @@
     M1 密度深删（参数层）→ M8 拒绝引导（行为层）
     → Abs 上位词语义回退 → M6 GRPO 流畅度修复。
 其余 GA/NPO/KUnBR/RULE/PURGE/ReRULE/UNI 作为对照基线保留。
-目标硬件：8B/9B 正式训练面向 RTX 4090 48GB 云服务器，
+目标硬件：8B/9B/14B 正式训练面向 RTX 4090 48GB 云服务器，
 本机（5070 Ti 16GB）用于改代码与结果分析。
 设计原则：
     1. 模型 bf16 加载，模型口径统一在 MODEL_SPECS 登记；
@@ -108,6 +108,10 @@ _QWEN35_LORA_TARGETS = ("q_proj", "k_proj", "v_proj", "o_proj",
                         "in_proj_qkv", "in_proj_a", "in_proj_b",
                         "in_proj_z", "out_proj",
                         "gate_proj", "up_proj", "down_proj")
+# Qwen2 标准稠密架构（DeepSeek-R1-Distill-Qwen-14B 的底座即 Qwen2.5-14B）：
+# 仅常规注意力 q/k/v/o 与 MLP gate/up/down，模块名与 Llama 同口径，无混合线性层
+_QWEN2_LORA_TARGETS = ("q_proj", "k_proj", "v_proj", "o_proj",
+                       "gate_proj", "up_proj", "down_proj")
 
 MODEL_SPECS = {
     "Llama-3.1-8B-Instruct": {
@@ -124,6 +128,14 @@ MODEL_SPECS = {
         "m1_n_blocks": 8,
         "lora_target_modules": _QWEN35_LORA_TARGETS,
         "multimodal": True,         # 检查点为 Qwen3_5ForConditionalGeneration
+        "attn_implementation": "sdpa",
+    },
+    "DeepSeek-R1-Distill-Qwen-14B": {
+        "family": "qwen2",
+        "n_layers": 48,
+        "m1_n_blocks": 8,           # 48 层 / 8 块 = 6 层一块，整除
+        "lora_target_modules": _QWEN2_LORA_TARGETS,
+        "multimodal": False,        # Qwen2ForCausalLM，纯文本因果模型
         "attn_implementation": "sdpa",
     },
 }

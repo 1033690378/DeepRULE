@@ -3,7 +3,7 @@
 环境自检脚本
 ============================================================
 不依赖任何第三方库即可运行，用于在安装依赖、下载模型前后
-逐项核对机器环境与 8B/9B 模型、数据目录的完整性。
+逐项核对机器环境与 8B/9B/14B 模型、数据目录的完整性。
 用法：
     python check_env.py
 输出每项的 PASS（通过）/ WARN（警告）/ FAIL（不通过）。
@@ -54,7 +54,8 @@ def check_python():
 def check_gpu(profile="local"):
     """
     通过 nvidia-smi 检查 GPU 型号、显存与驱动。
-    8B/9B 模型 bf16 权重本身约 16–18 GB，训练建议 ≥24 GB 显存；
+    8B/9B/14B 模型 bf16 权重本身约 16–28 GB，训练建议 ≥24 GB 显存
+    （14B 实际需 48GB 卡配合 8bit+LoRA）；
     低于该值不判 FAIL（本机仍可改代码、做结果分析），只 WARN 提示上云端。
     """
     try:
@@ -67,10 +68,10 @@ def check_gpu(profile="local"):
         mem_gb = int(mem_mb.split()[0]) / 1024
         if mem_gb >= 24:
             record("GPU", "PASS", "%s，显存 %.1f GB（%s 档位），驱动 %s，"
-                   "可承载 8B/9B 训练" % (name, mem_gb, profile, driver))
+                   "可承载 8B/9B/14B 训练" % (name, mem_gb, profile, driver))
         else:
             record("GPU", "WARN", "%s，显存 %.1f GB（%s 档位），驱动 %s；"
-                   "8B/9B 训练建议 ≥24 GB（如 RTX 4090 48GB），"
+                   "8B/9B/14B 训练建议 ≥24 GB（如 RTX 4090 48GB），"
                    "本机仅适合改代码与分析结果"
                    % (name, mem_gb, profile, driver))
     except Exception as exc:
@@ -136,14 +137,14 @@ def check_torch_cuda():
 
 
 def check_disk():
-    """检查代码所在盘剩余空间：两个模型约 34 GB，建议预留 45 GB。"""
+    """检查代码所在盘剩余空间：三个模型约 62 GB，建议预留 80 GB。"""
     drive = os.path.splitdrive(os.path.abspath(__file__))[0] + os.sep
     free_gb = shutil.disk_usage(drive).free / 1024**3
-    if free_gb >= 45:
+    if free_gb >= 80:
         record("磁盘剩余空间", "PASS", "%.1f GB" % free_gb)
     else:
         record("磁盘剩余空间", "WARN",
-               "%.1f GB，8B/9B 两模型加数据建议预留 45 GB 以上" % free_gb)
+               "%.1f GB，8B/9B/14B 三模型加数据建议预留 80 GB 以上" % free_gb)
 
 
 def check_local_assets():
